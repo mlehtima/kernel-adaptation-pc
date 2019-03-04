@@ -219,13 +219,6 @@ static int vbox_master_set(struct drm_device *dev,
 {
 	struct vbox_private *vbox = dev->dev_private;
 
-	/*
-	 * We do not yet know whether the new owner can handle hotplug, so we
-	 * do not advertise dynamic modes on the first query and send a
-	 * tentative hotplug notification after that to see if they query again.
-	 */
-	vbox->initial_mode_queried = false;
-
 	mutex_lock(&vbox->hw_mutex);
 	/*
 	 * Disable VBVA when someone releases master in case the next person
@@ -247,9 +240,6 @@ static int vbox_master_set(struct drm_device *dev,
 static void vbox_master_drop(struct drm_device *dev, struct drm_file *file_priv)
 {
 	struct vbox_private *vbox = dev->dev_private;
-
-	/* See vbox_master_set() */
-	vbox->initial_mode_queried = false;
 
 	mutex_lock(&vbox->hw_mutex);
 	vbox_disable_accel(vbox);
