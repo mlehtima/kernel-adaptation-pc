@@ -15,6 +15,7 @@ Requires(pre): kmod
 Requires(pre): mkinitrd >= 6.0.39-1
 BuildRequires:  bison
 BuildRequires:  flex
+BuildRequires:  libssl-dev
 BuildRequires:  pkgconfig(ncurses)
 Provides:   kernel = %{kernel_version}
 
