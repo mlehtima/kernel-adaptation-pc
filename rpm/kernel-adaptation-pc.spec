@@ -13,6 +13,8 @@ License:    GPLv2
 Source0:    %{name}-%{version}.tar.bz2
 Requires(pre): kmod
 Requires(pre): mkinitrd >= 6.0.39-1
+BuildRequires:  bison
+BuildRequires:  flex
 BuildRequires:  pkgconfig(ncurses)
 Provides:   kernel = %{kernel_version}
 
