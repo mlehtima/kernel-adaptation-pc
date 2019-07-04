@@ -16,11 +16,14 @@ $(bounds-file): kernel/bounds.s FORCE
 #####
 # Generate timeconst.h
 
+
 timeconst-file := include/generated/timeconst.h
 
 targets += $(timeconst-file)
 
-filechk_gentimeconst = echo $(CONFIG_HZ) | bc -q $<
+define filechk_gentimeconst
+	(echo $(CONFIG_HZ) | bc -q $< )
+endef
 
 $(timeconst-file): kernel/time/timeconst.bc FORCE
 	$(call filechk,gentimeconst)
